@@ -8,7 +8,6 @@ env:
    DOCKER_USER: ${{  secrets.DOCKER_USERNAME }}
    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}    
    PROJECT_NAME: ${{ github.event.repository.name }} 
-   PROJECT_VERSION: 'v0.1.0-beta'
 jobs:
   package:
     name: Build 
@@ -32,9 +31,15 @@ jobs:
         run: cat ~/.m2/settings.xml
       - name: package
         run: mvn -DskipTests=true package
+      - name: Extract Maven project version
+        run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+        id: project
+
+      - name: Show extracted Maven project version
+        run: echo ${{ steps.project.outputs.version }}
       - name: Login to Docker
         run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
       - name: Build Docker Image
-        run: docker build -t netmille/$PROJECT_NAME:$PROJECT_VERSION .
+        run: docker build -t netmille/$PROJECT_NAME:${{ steps.project.outputs.version }} .
       - name: Push Docker Image
-        run: docker push netmille/$PROJECT_NAME:$PROJECT_VERSION 
+        run: docker push netmille/$PROJECT_NAME:${{ steps.project.outputs.version }} 
