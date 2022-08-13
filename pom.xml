@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.netmillennium.gagrid.app.optchange</groupId>
 	<artifactId>gagrid-app-optchange</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-beta</version>
 	<name>gagrid-app-optchange</name>
 	<description>gagrid-app-optchange</description>
 	<properties>
@@ -31,7 +31,7 @@
                <dependency>
 			<groupId>com.netmillennium.gagrid.services.optchange</groupId>
 	                <artifactId>gagrid-services-optchange</artifactId>
-	                <version>0.0.1-SNAPSHOT</version>
+	                <version>0.1.0-beta</version>
 		</dependency>
     <dependency>
         <groupId>org.apache.ignite</groupId>
