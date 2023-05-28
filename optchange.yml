@@ -1,6 +1,6 @@
 services:
   gagrid-app-optchange-service:
-    image: netmille/gagrid-app-optchange:0.1.0-beta
+    image: netmille/gagrid-app-optchange:0.1.1-beta
     environment:
      - "IGNITE_QUIET=false"
      - "AMOUNTCHANGE=75"
@@ -9,7 +9,7 @@ services:
     networks: 
       - optchange-network 
   ignite-gagrid-service:
-    image:  netmille/ignite-gagrid:2.12.0_0.1.0-beta
+    image:  netmille/ignite-gagrid:2.15.0_0.1.1-beta
     environment:
      - "IGNITE_QUIET=false"
     networks: 
